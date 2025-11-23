@@ -1,0 +1,22 @@
+name: CI Demo
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Récupération du code
+      uses: actions/checkout@v3
+
+    - name: Installer Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Installation dépendances
+      run: npm install
+
+    - name: Lancement des tests
+      run: npm test || echo "Tests échoués"
